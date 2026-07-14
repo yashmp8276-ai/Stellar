@@ -1,0 +1,52 @@
+name: Stellar Smart Contracts CI/CD
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    name: Run Unit Tests & Build Contracts
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Source Code
+      uses: actions/checkout@v4
+
+    - name: Setup Rust & Cargo Toolchain
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        toolchain: stable
+        targets: wasm32-unknown-unknown
+
+    - name: Cache Cargo Dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cargo/registry
+          ~/.cargo/git
+          contracts/governance/target
+          contracts/treasury/target
+        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.toml') }}
+
+    - name: Run Treasury Contract Tests
+      run: |
+        cd contracts/treasury
+        cargo test
+
+    - name: Run Governance Contract Tests
+      run: |
+        cd contracts/governance
+        cargo test
+
+    - name: Compile Treasury WASM
+      run: |
+        cd contracts/treasury
+        cargo build --target wasm32-unknown-unknown --release
+
+    - name: Compile Governance WASM
+      run: |
+        cd contracts/governance
+        cargo build --target wasm32-unknown-unknown --release
