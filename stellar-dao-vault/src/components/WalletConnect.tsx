@@ -24,7 +24,7 @@ const WalletConnect: React.FC<Props> = ({
       const { address: addr } = await openAuthModal();
       if (addr) onConnect(addr);
     } catch (e: any) {
-      console.error('Wallet connect failed:', e);
+      console.error('Wallet connect failed:', e?.message || (typeof e === 'object' ? JSON.stringify(e) : e));
     } finally {
       setIsConnecting(false);
     }

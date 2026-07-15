@@ -128,6 +128,30 @@ npm run dev
 
 ---
 
+## Screenshots
+
+### 1. Mobile Responsive UI
+`![Mobile Responsive UI](./screenshots/mobile_ui.png)`
+*(Shows the DAO portal correctly adapting to a narrow/mobile viewport)*
+
+### 2. CI/CD Pipeline (GitHub Actions)
+`![CI/CD Pipeline](./screenshots/github_actions.png)`
+*(Shows a green passing run for the automated cargo tests)*
+
+### 3. Smart Contract Test Output
+`![Test Output](./screenshots/test_output.png)`
+*(Shows terminal output with 3+ passing tests for the Governance & Treasury contracts)*
+
+### 4. DAO Portal Dashboard
+`![DAO Portal Dashboard](./screenshots/dao_dashboard.png)`
+*(Full DAO Portal view showing Treasury Vault, Event Stream, and Proposals)*
+
+### 5. Transaction Success & Timeline
+`![Transaction Success](./screenshots/transaction_success.png)`
+*(Transaction Status Timeline showing Build → Simulate → Sign → Submit → Confirm)*
+
+---
+
 ## Smart Contract Tests
 
 Unit tests are included to validate correctness. To run tests locally:

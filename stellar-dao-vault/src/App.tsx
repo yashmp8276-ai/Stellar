@@ -157,11 +157,18 @@ const App: React.FC = () => {
 
       // 3. Sign
       setTxStep('signing');
-      const passphrase = import.meta.env.VITE_NETWORK_PASSPHRASE || 'Test SDF Network ; September 2015';
-      const signedXdr = await signTransactionXdr(preparedXdr, {
-        networkPassphrase: passphrase,
-        address,
-      });
+      let signedXdr: string;
+      if (preparedXdr.startsWith('{')) {
+        // Bypass real wallet signing if in mock/simulation mode (JSON string)
+        signedXdr = preparedXdr;
+        await new Promise((r) => setTimeout(r, 600));
+      } else {
+        const passphrase = import.meta.env.VITE_NETWORK_PASSPHRASE || 'Test SDF Network ; September 2015';
+        signedXdr = await signTransactionXdr(preparedXdr, {
+          networkPassphrase: passphrase,
+          address,
+        });
+      }
       await new Promise((r) => setTimeout(r, 400));
 
       // 4. Submit
@@ -175,7 +182,7 @@ const App: React.FC = () => {
       // Instantly reload DAO state
       await loadDaoData();
     } catch (e: any) {
-      console.error('DAO transaction failed:', e);
+      console.error('DAO transaction failed:', e?.message || (typeof e === 'object' ? JSON.stringify(e) : e));
       setTxStep('error');
       setTxError(classifyError(e));
     }
