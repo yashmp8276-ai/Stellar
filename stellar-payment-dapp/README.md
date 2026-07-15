@@ -64,18 +64,9 @@ Open your browser and navigate to `http://localhost:5173`.
 
 ---
 
-## Screenshots & Placeholders
+## Screenshots
 
-Here are placeholders representing key visual states of the application:
+### Application Dashboard
+![Initial Load](./screenshots/initial_load.png)
 
-### Wallet Connected State
-`[Placeholder: Wallet connected. Abbreviated address is shown with a Disconnect button.]`
-
-### Balance Displayed
-`[Placeholder: Display of XLM balance (e.g. 10,000.0000 XLM) with a refresh icon and minimum network reserve note.]`
-
-### Successful Testnet Transaction
-`[Placeholder: Freighter popup prompting the user to sign the transaction.]`
-
-### Transaction Result Shown to User
-`[Placeholder: Green banner showing "Transaction Successful!", displaying transaction hash, and providing a link to Stellar.Expert explorer.]`
+> Note: To view the full transaction flow (Freighter popup, success banners, Friendbot activation), please connect your wallet locally and run the dApp.

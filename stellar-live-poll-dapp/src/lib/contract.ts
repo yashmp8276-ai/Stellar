@@ -168,12 +168,15 @@ export async function submitVoteTransaction(signedXdr: string): Promise<{ hash: 
 
 // ─── Error classifier ───────────────────────────────────────────────────────
 
-export type VoteErrorType = 'voted' | 'rejected' | 'rpc' | 'generic';
+export type VoteErrorType = 'wallet_not_found' | 'voted' | 'rejected' | 'rpc' | 'generic';
 
 export function classifyError(err: unknown): { type: VoteErrorType; title: string; desc: string } {
   const msg = err instanceof Error ? err.message : String(err);
   const lower = msg.toLowerCase();
 
+  if (lower.includes('wallet not found') || lower.includes('not installed') || lower.includes('no wallet') || lower.includes('extension not detected') || lower.includes('install')) {
+    return { type: 'wallet_not_found', title: 'Wallet Not Found', desc: 'No Stellar wallet extension detected. Install Freighter or another compatible wallet and refresh.' };
+  }
   if (lower.includes('alreadyvoted') || lower.includes('already voted')) {
     return { type: 'voted', title: 'Already Voted', desc: 'This address has already cast a vote in this poll.' };
   }

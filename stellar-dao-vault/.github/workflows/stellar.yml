@@ -50,3 +50,15 @@ jobs:
       run: |
         cd contracts/governance
         cargo build --target wasm32-unknown-unknown --release
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install Frontend Dependencies
+      run: npm install
+
+    - name: Build Frontend
+      run: npm run build

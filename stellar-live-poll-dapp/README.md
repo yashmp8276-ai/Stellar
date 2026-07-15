@@ -190,7 +190,23 @@ cargo test
 | 6 | `test_reinitialize_rejected` | `AlreadyInitialized` |
 | 7 | `test_getters_return_initialized_values` | Read-only getters |
 
+### ✅ Verified Test Output (2026-07-15)
+
+```
+running 7 tests
+test tests::test_getters_return_initialized_values ... ok
+test tests::test_reinitialize_rejected - should panic ... ok
+test tests::test_invalid_option_index_rejected - should panic ... ok
+test tests::test_double_vote_different_option_rejected - should panic ... ok
+test tests::test_vote_increments_count ... ok
+test tests::test_double_vote_same_option_rejected - should panic ... ok
+test tests::test_multiple_voters_multiple_options ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+```
+
 ---
+
 
 ## Project Structure
 

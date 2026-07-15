@@ -77,10 +77,8 @@ mod tests {
 
         client.initialize(&gov, &10000i128);
 
-        // Governance makes the call
-        env.as_contract(&gov, || {
-            client.release_funds(&recipient, &1500i128);
-        });
+        // mock_all_auths() covers governance.require_auth(); call directly:
+        client.release_funds(&recipient, &1500i128);
 
         assert_eq!(client.get_balance(), 8500i128);
     }

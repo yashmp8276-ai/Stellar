@@ -139,21 +139,59 @@ cargo test
 # Test Treasury
 cd contracts/treasury
 cargo test
+
+# Test Frontend (Vitest)
+npm run test
 ```
 
-### Covered Test Cases:
-- **Governance**:
-  - ✅ Proposal creation generates unique IDs & initializes votes
-  - ✅ Voter deposits correctly increment voting power
-  - ✅ Casting approval or rejection vote updates proposal tally
-  - ✅ Multi-voter proposals aggregate voting weights
-  - ✅ Duplicate voting on same proposal rejected
-  - ✅ Execution of passed proposals calls treasury (mocked path)
-- **Treasury**:
-  - ✅ Authorized caller (Governance) executes transfers successfully
-  - ✅ Unauthorized caller executing `release_funds` panics
+### ✅ Verified Test Output (2026-07-15)
+
+**Governance Contract** (`contracts/governance/src/lib.rs`) — 4 tests:
+```
+running 4 tests
+test tests::test_execution_calls_treasury ... ok
+test tests::test_double_voting_rejected - should panic ... ok
+test tests::test_deposit_increases_voting_power ... ok
+test tests::test_vote_proposal ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+```
+
+**Treasury Contract** (`contracts/treasury/src/lib.rs`) — 2 tests:
+```
+running 2 tests
+test tests::test_release_funds_unauthorized - should panic ... ok
+test tests::test_release_funds_authorized ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+```
+
+**Frontend — Vitest** (`npm run test`) — 10 tests across 2 files:
+```
+ RUN  v4.1.10
+
+ ✓ src/test/ErrorBanner.test.tsx (5 tests) 64ms
+ ✓ src/test/TreasuryVault.test.tsx (5 tests) 258ms
+
+ Test Files  2 passed (2)
+      Tests  10 passed (10)
+   Duration  3.89s
+```
+
+**Frontend Build** (`npm run build`):
+```
+vite v8.1.4 building client environment for production...
+✓ 333 modules transformed.
+dist/index.html                   0.46 kB │ gzip:   0.29 kB
+dist/assets/index-CcgwiNxI.css   11.63 kB │ gzip:   3.14 kB
+dist/assets/utils-CPrpbW7U.js   124.84 kB │ gzip:  33.87 kB
+dist/assets/index-DlKPVhAJ.js   311.86 kB │ gzip: 100.67 kB
+
+✓ built in 611ms
+```
 
 ---
+
 
 ## Project Structure
 

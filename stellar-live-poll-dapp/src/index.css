@@ -204,6 +204,7 @@ body {
 .error-banner.type-voted    { background: rgba(239,68,68,0.1);   border: 1px solid rgba(239,68,68,0.35);   color: #fca5a5; }
 .error-banner.type-rejected { background: rgba(251,191,36,0.1);  border: 1px solid rgba(251,191,36,0.35);  color: #fde68a; }
 .error-banner.type-rpc      { background: rgba(249,115,22,0.1);  border: 1px solid rgba(249,115,22,0.35);  color: #fdba74; }
+.error-banner.type-wallet_not_found { background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.35); color: #c4b5fd; }
 .error-banner.type-generic  { background: rgba(100,116,139,0.15); border: 1px solid rgba(100,116,139,0.35); color: #cbd5e1; }
 .error-icon { font-size: 1.25rem; flex-shrink: 0; }
 .error-title { font-weight: 700; font-size: 0.9rem; }
